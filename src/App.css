@@ -1,33 +1,560 @@
-.App {
+/*
+
+Cribbage App?
+
+*/
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300,400,700|Great+Vibes');
+
+* {
+  font-family: 'Yanone Kaffeesatz', 'Arial Narrow', sans-serif;
+}
+
+.scripty {
+  font-family: 'Great Vibes', script;
+}
+
+#login {
+  display: block;
+  width: 100%; 
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(rgba(70,80,70,0.8), rgba(70,80,70,0.8)), url(images/board.jpg);
+  background-size: cover;
+  z-index: 1000;
+
+  /*display: none;*/
+}
+
+#login form {
+  margin: 0 auto;
+  position: relative;
+  top: calc(50vh - 155px);
+  width: 500px;
+}
+
+#login form h1 {
+  font-size: 90px;
+  line-height: 100px;
+  text-align: center;
+  display: block;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-weight: normal;
+  text-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+#login button, #login input {
+  margin: 5px;
+  padding: 0;
+  display: block;
+  width: 100%;
+  height: 60px;
+  font-size: 24px;
+  line-height: 60px;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+#login button {
+  border: none;
+  background: rgb(120,120,160);
+  color: white;
+  text-shadow: 0 0 4px rgba(0,0,0,0.3);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+#login input {
+
+}
+
+
+
+
+
+
+
+body {
+  background: linear-gradient(-45deg, rgba(30,35,30,0.8), rgba(70,80,70,0.8)), url(images/green.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#Home {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 1400px;
+  height: calc(100vh - 75px);
+  margin: 0 auto;
+  margin-top: 75px;
+}
+
+#banner {
+  width: 100%;
+  height: 75px;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgb(150,50,50);
+  box-shadow: 0 0 4px rgba(0,0,0,0.8);
+}
+
+#banner h2 {
+  color: white;
+  font-family: 'Great Vibes', script;
+  font-weight: 300;
+  font-size: 42px;
+  line-height: 75px;
+  text-align: center;
+  margin: 0;
+  margin-top: 3px;
+}
+
+#userList, #chat, #gameChat {
+  display: block;
+  position: absolute;
+  right: 0;
+  width: 20%;
+  min-width: 200px;
+  max-width: 400px;
+  /*border: 1px solid rgb(130,130,130);*/
+  margin: 5px;
+  background: rgba(255,255,255,1);
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+
+#userList h2, #chat h2, #gameChat h2 {
+  display: block;
+  margin: 0;
+  font-size: 24px;
+  line-height: 2em;
+  width: 100%;
+  text-align: center;
+  background: rgb(120,120,160);
+  color: white;
+  font-weight: 300;
+}
+
+#userList {
+  height: 225px;
+  top: 0;
+}
+
+#userul {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#userul li {
+  text-decoration: none;
+  list-style: none;
+  text-align: left;
+  font-size: 18px;
+  line-height: 28px;
+  padding-top: 3px;
+  padding-left: 6px;
+  width: 100%;
+}
+
+#userul li:nth-of-type(even){
+  background: rgba(0,0,0,0.1);
+}
+
+#chat, #gameChat {
+  height: calc(100vh - 315px);
+  top: 230px;
+}
+
+#chats, #gameChats {
+  width: 100%;
+  display: block;
+  height: calc(100vh - 315px - 30px - 48px);
+  overflow-y: auto;
+  overflow-wrap: break-word;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+}
+
+#chats p, #gameChats p {
+  padding: 8px;
+  margin: 0;
+  line-height: 1.2em;
+}
+
+#chats p:nth-of-type(even), #gameChats p:nth-of-type(odd) {
+  background: rgb(240,240,240);
+}
+
+#chats p .userId {
+  color: rgb(120,120,160);
+}
+
+#chat form, #gameChat form {
+  display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+#chat form input, #gameChat form input {
+  width: calc(100% - 30px);
+  height: 30px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border: none;
+  background: rgba(120,120,160,0.3);
+  font-size: 18px;
+  line-height: 30px;
+  padding: 0 4px;
+}
+
+#chat form button, #gameChat form button {
+  width: 30px;
+  height: 30px;
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: rgb(120,120,160);
+  color: white;
+  border: none;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+
+
+
+
+#playerInfo {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 5px;
+  width: calc(80% - 15px);
+  background: white;
+  max-width: calc(100% - 215px);
+  height: 180px;
+  padding-left: 48px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+
+#playerInfo h2 {
+  display: block;
+  position: absolute;
+  left: -66px;
+  top: 46px;
+  height: 48px;
+  width: 180px;
+  background: rgb(120,120,160);
+  color: white;
+  font-size: 24px;
+  font-weight: 300;
+  transform: rotate(-90deg);
+  text-align: center;
+  line-height: 48px;
+}
+
+#playerInfo #playerId {
+  padding: 20px;
+  width: 140px;
+  height: 180px;
+}
+
+#playerInfo #playerId h3 {
+  text-align: center;
+}
+
+#playerInfo #playerPhoto {
+  display: block;
+  background: rgba(120,120,160,0.6);
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  overflow: hidden;
+  position: relative;
+}
+
+#playerInfo #playerPhoto:before {
+  content: '';
+  display: block;
+  position: relative;
+  margin: 16px auto;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  background: rgb(120,120,160);
+}
+
+#playerInfo #playerPhoto:after {
+  content: '';
+  display: block;
+  position: relative;
+  margin: -10px auto;
+  height: 60px;
+  width: 64px;
+  border-radius: 24px;
+  background: rgb(120,120,160);
+}
+
+#playerInfo #playerStats {
+  width: calc(100% - 48px - 150px);
+  height: 170px;
+  position: absolute;
+  left: 188px;
+  top: 0;
+  background: rgba(120,120,160,0.2);
+  margin: 0;
+}
+
+#playerInfo #playerStats h4 {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 2em;
+  margin: 0;
+  padding: 0;
+  padding-left: 10px;
+  border-bottom: 1px solid white;
+  background: white;
+}
+
+#playerInfo #playerStats p {
+  line-height: 1.6em;
+  margin: 0;
+  padding-left: 20px;
+  border-left: 1px solid rgb(120,120,160);
+}
+
+#playerInfo #playerStats p:first-of-type {
+  padding-top: 10px;
+  border-top: 1px solid rgb(120,120,160);
+}
+
+#playerInfo #playerState p:last-of-type {
+  padding-bottom: 10px;
+}
+
+
+
+
+
+
+#gameTable {
+  display: block;
+  width: calc(80% - 15px);
+  max-width: calc(100% - 215px);
+  min-width: calc(100% - 415px);
+  height: calc(100vh - 270px);
+  position: absolute;
+  top: 185px;
+  margin: 5px;
+  border: 1px solid rgba(255,255,255,0.5);
+  background: white;
+}
+
+
+
+
+
+
+
+
+
+#createGame {
+  display: block;
+  width: 100%;
+  background: rgb(120,120,160);
+  padding: 0 30px;
+  position: relative;
+}
+
+#createGame h2 {
+  color: white;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  line-height: 120px;
+  font-size: 42px;
+  display: inline-block;
+}
+
+#createGame form {
+  display: inline-block;
+  width: calc(100% - 260px);
+  position: absolute;
+  left: 260px;
+  height: 120px;
+  padding-top: 27px;
+}
+
+#createGame label {
+  color: white;
+  font-weight: 300;
+  float: left;
+  line-height: 2em;
+  font-size: 18px;
+  margin-left: 3px;
+  cursor: pointer;
+}
+
+#createGame input {
+  float: left;
+  clear: both;
+  font-size: 30px;
+  position: relative;
+  top: 0.25em;
+  cursor: pointer;
+}
+
+#createGame button {
+  /*height: 90px;*/
+  line-height: 118px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  width: 50%;
+  font-size: 24px;
+  font-weight: 300;
+  background: rgba(0,0,0,0.2);
+  color: white;
+  cursor: pointer;
+  border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+
+
+
+#gamesList {
+  background: white;
+}
+
+#gamesList h4 {
+  color: white;
+  font-size: 28px;
+  width: 100%;
+  background: rgb(67,67,67);
+  text-align: left;
+  margin: 0;
+  padding: 12px 30px;
+  font-weight: 300;
+
+}
+
+.gameSummary {
+  font-weight: 300;
+  font-size: 18px;
+  margin: 0;
+  padding: 0 30px;
+  height: 60px;
+  position: relative;
+}
+
+.gameSummary p {
+  margin: 0;
+  line-height: 60px;
+  font-weight: 300;
+}
+
+.gameSummary p span {
+  font-weight: 700;
+}
+
+.gameSummary i {
+  font-weight: 300;
+  color: rgb(150,150,150);
+}
+
+.gameSummary:nth-of-type(odd){
+  background: rgba(0,0,0,0.1);
+}
+
+.gameSummary button {
+  cursor: pointer;
+}
+
+.gameSummary .watchButton, .gameSummary .cantWatch {
+  width: 25%;
+  display: block;
+  position: absolute;
+  right: 25%;
+  height: 60px;
+  top: 0;
+  text-align: center;
+  line-height: 60px;
+  font-size: 18px;
+  font-weight: 300;
+  border: none;
+  border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+.gameSummary .watchButton {
+  width: 25%;
+  cursor: pointer;
+  background: rgb(120,120,160);
+}
+
+.gameSummary .cantWatch, .gameSummary .cantJoin, .gameSummary .gameFull {
+  background: rgb(0,0,0,0.3);
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.1);
+}
+
+.gameSummary .gameFull {
+  background: rgb(150,50,50);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.gameSummary .joinButton, .gameSummary .cantJoin, .gameSummary .gameFull {
+  position: absolute;
+  width: 25%;
+  height: 60px;
+  right: 0;
+  top: 0;
+  text-align: center;
+  font-size: 18px;
+  line-height: 60px;
+  font-weight: 300;
+  padding: 0;
+  border: none;
+  border-left: 1px solid rgba(0,0,0,0.1);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.gameSummary .joinButton {
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.1);
+  background: rgb(175,175,205);
+}
+
+
+
+
+
+#Game {
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-y: hidden;
+}
+
+#gameChat {
+  top: 305px;
+}
+
+#gameChats p .userId {
+  color: rgb(120,120,160);
 }
